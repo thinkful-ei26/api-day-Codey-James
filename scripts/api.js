@@ -6,6 +6,7 @@ const api = (function() {
     const getItems = (callback) => {
         const url = BASE_URL + '/items';
         $.getJSON(url, callback);
+        
     };
     const createItem = function(name, callback){
         const newItem = JSON.stringify({ name, });
@@ -27,8 +28,8 @@ const api = (function() {
             data: JSON.stringify(updateData),
             success: callback,
             //error: errorcallback
-        })
-    }
+        });
+    };
 
     return {
         getItems,
