@@ -14,7 +14,7 @@ const store = (function(){
   const findAndDelete = function(id) {
     this.items = this.items.filter(item => item.id !== id);
   };
-  
+
   const findAndUpdate = function (id, newData){
     const myElement = store.items.find(element => element.id === id);
     Object.assign(myElement, newData);
@@ -37,6 +37,7 @@ const store = (function(){
     items: [],
     hideCheckedItems: false,
     searchTerm: '',
+    error: '',
 
     addItem,
     findById,

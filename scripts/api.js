@@ -16,8 +16,8 @@ const api = (function() {
             method: 'POST',
             contentType: 'application/json',
             data : newItem,
-            success : callback
-            //error: errorcallback
+            success : callback,
+            error: errorCallback
         });
     };
     const updateItem = (id, updateData, callback) => {
@@ -27,7 +27,7 @@ const api = (function() {
             contentType: 'application/json',
             data: JSON.stringify(updateData),
             success: callback,
-            //error: callback,
+            error: errorCallback,
         });
     };
     const deleteItem = function(id, callback){
@@ -36,13 +36,19 @@ const api = (function() {
             method: 'DELETE',
             contentType: 'application/json',
             success : callback,
-            //error: errorCallback
+            error: errorCallback
         });
     };
+    const errorCallback = (err) => {
+        store.error = err.responseJSON.message;
+        shoppingList.render();
+    }
+
     return {
         getItems,
         createItem,
         updateItem,
-        deleteItem
+        deleteItem,
+        errorCallback
     };
 }());

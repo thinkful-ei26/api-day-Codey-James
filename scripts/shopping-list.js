@@ -44,6 +44,14 @@ const shoppingList = (function(){
   function render() {
     // Filter item list if store prop is true by item.checked === false
     let items = [ ...store.items ];
+
+    if(store.error) {
+      $('h1').html(`Shopping List <br> <span style="color:red; font-size:12px;">${store.error}</span>`);
+      store.error = '';
+    } else {
+      $('h1').html('Shopping List');
+    }
+
     if (store.hideCheckedItems) {
       items = items.filter(item => !item.checked);
     }
@@ -61,9 +69,9 @@ const shoppingList = (function(){
     $('.js-shopping-list').html(shoppingListItemsString);
   }
   
-  
   function handleNewItemSubmit() {
     $('#js-shopping-list-form').submit(function (event) {
+      console.log(store.error)
       event.preventDefault();
       const newItemName = $('.js-shopping-list-entry').val();
       $('.js-shopping-list-entry').val('');
