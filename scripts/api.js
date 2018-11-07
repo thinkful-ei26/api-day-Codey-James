@@ -27,7 +27,7 @@ const api = (function() {
             contentType: 'application/json',
             data: JSON.stringify(updateData),
             success: callback,
-            //error: errorcallback
+            //error: callback,
         });
     };
 
