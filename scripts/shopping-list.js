@@ -86,7 +86,7 @@ const shoppingList = (function(){
       const item = store.findById(id);
       const obj = {
         checked: !item.checked
-      }
+      };
       api.updateItem(item.id, obj, () => {
         store.findAndUpdate(item.id, obj);
         render();
@@ -99,10 +99,11 @@ const shoppingList = (function(){
     $('.js-shopping-list').on('click', '.js-item-delete', event => {
       // get the index of the item in store.items
       const id = getItemIdFromElement(event.currentTarget);
-      // delete the item
-      store.findAndDelete(id);
-      // render the updated shopping list
-      render();
+      console.log(id);
+      api.deleteItem(id, function(){
+        store.findAndDelete(id);
+        render();
+      });
     });
   }
   
@@ -113,7 +114,7 @@ const shoppingList = (function(){
       const itemName = $(event.currentTarget).find('.shopping-item').val();
       const obj = {
         name: itemName
-      }
+      };
       api.updateItem(id, obj, () => {
        store.findAndUpdate(id, obj);
        render();
