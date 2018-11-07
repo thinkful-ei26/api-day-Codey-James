@@ -1,3 +1,5 @@
+'use strict';
+/*eslint-env jquery*/
 /* global shoppingList, store */
 
 $(document).ready(function() {
@@ -6,5 +8,4 @@ $(document).ready(function() {
 });
 
 store.items.push(Item.create('apples'));
-
 
