@@ -71,7 +71,6 @@ const shoppingList = (function(){
   
   function handleNewItemSubmit() {
     $('#js-shopping-list-form').submit(function (event) {
-      console.log(store.error)
       event.preventDefault();
       const newItemName = $('.js-shopping-list-entry').val();
       $('.js-shopping-list-entry').val('');
@@ -107,7 +106,6 @@ const shoppingList = (function(){
     $('.js-shopping-list').on('click', '.js-item-delete', event => {
       // get the index of the item in store.items
       const id = getItemIdFromElement(event.currentTarget);
-      console.log(id);
       api.deleteItem(id, function(){
         store.findAndDelete(id);
         render();
